@@ -1,0 +1,12 @@
+east,"Test, you are going east."
+west,"Test, you are going west."
+south,
+north,"Test, you are going north."
+
+enter,"Test, you are entering TestLocation."
+
+look_around,"Test, you are taking a quick look-around."
+
+items,item1 item2 item3 item4
+
+people,person1 person2 person3

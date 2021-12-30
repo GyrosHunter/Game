@@ -1,0 +1,12 @@
+east,going further down the road.
+west,heading towards the city.
+south,
+north,climbing up the slope.
+
+enter,"You have arrived at the crossroads. Nothing to see here. Three roads are leading east, west and north. As the wind is gently blowing, you notice an old paper lying at the side of the road..."
+
+look_around,"Nothing much to see here... You are standing at the crossroads. From here, you can travel east towards what appears to be a city. You can climb north up the elevated plateau or head down the road to the west. To the south there is a vast swath of land and a mirage of mountains covered in myst. That is where you came from. And you're not coming back."
+
+items,blade old_jacket dupa
+
+people,John_Doe Albert Bonzo_Gonzo
