@@ -4,109 +4,107 @@ import csv
 class Location:
     all_directions = ("east", "west", "south", "north")
 
-    def __init__(self, coordinates, name):
-        self.coordinates = coordinates
-        self.name = name
-        self.actions = {}
-        with open(f"./TXT/{self.name}.txt", 'r') as file:
+    def __init__(self, name: str):
+
+        self.features = {}
+        with open(f"./LOCATIONS/{name}.txt", 'r') as file:
             reader = csv.reader(file)
             for row in reader:
                 if row:
-                    decision, action = row
-                    self.actions[decision] = action
+                    key, feature = row
+                    self.features[key] = feature
 
-        if self.actions["items"]:
-            self.items = [item.replace('_', ' ') for item in self.actions["items"].split(' ')]
+        self.name = self.features["name"]
+
+        self.coordinates = self.features["coordinates"]
+
+        self.name_reference = self.features["name_reference"]
+
+        self.available_directions = []
+        for direction in self.all_directions:
+            if self.features[f"{direction}_exit_location"]:
+                self.available_directions.append(direction)
+
+        if self.features["items"]:
+            self.items = [item.replace('_', ' ') for item in self.features["items"].split(' ')]
         else:
             self.items = []
 
-        if self.actions["people"]:
-            self.people = [person.replace('_', ' ') for person in self.actions["people"].split(' ')]
+        if self.features["people"]:
+            self.people = [person.replace('_', ' ') for person in self.features["people"].split(' ')]
         else:
             self.people = []
 
-        self.directions = []
-        for direction in self.all_directions:
-            if self.actions[direction]:
-                self.directions.append(direction)
+        if self.features["structures"]:
+            self.structures = [structure.replace('_', ' ') for structure in self.features["structures"].split(' ')]
+        else:
+            self.structures = []
+
+        self.exit_locations = {}
+        for direction in self.available_directions:
+            self.exit_locations[direction] = self.features[f"{direction}_exit_location"].replace('_', ' ')
 
     def __repr__(self):
-        return f"You are at the {self.name}."
+        return f"You are {self.name_reference}."
 
     def enter(self):
-        return f"{self.actions['enter']}"
+        print(f"{self.features['enter']}")
 
-    def exit(self, direction):
-        if self.actions[direction]:
-            return f"You are leaving {self.name} and now {self.actions[direction]}"
-        return "You can't go there."
+    def show_available_directions(self):
+        directions = ', '.join(self.available_directions)
+        print(f"You can travel in the following directions: {directions}.")
 
     def look_around(self):
-        return f"{self.actions['look_around']}"
+        print(f"{self.features['description']}")
 
     def show_items(self):
         if self.items:
             items = ', '.join(self.items)
-            return f"After a quick look-around you notice the following objects available in this location: {items}."
-        return "No items can be found here."
+            print(f"After a quick look-around you notice the following objects available in this location: {items}.")
+        else:
+            print("No items can be found here.")
 
     def show_people(self):
         if self.people:
             people = ', '.join(self.people)
-            return f"The following people are present here: {people}."
-        return "The is no one here."
+            print(f"The following people are present {self.name_reference}: {people}.")
+        else:
+            print("The is no one here.")
 
-    def show_directions(self):
-        directions = ', '.join(self.directions)
-        return f"You can travel in the following directions: {directions}."
+    def show_structures(self):
+        if self.structures:
+            structures = ', '.join(self.structures)
+            print(f"You see: {structures}.")
+        else:
+            print("The is absolutely nothing here.")
 
-    def remove_item(self, item):
+    def exit(self, direction: str) -> str:
+        if self.features[f"{direction}_exit_location"]:
+            print(f"You are leaving {self.name} and now {self.features[direction]}")
+            return self.exit_locations[direction]
+        print(f"{self.features[direction]}")
+
+    def add_item(self, item: str):
+        self.items.append(item)
+
+    def remove_item(self, item: str):
         if item in self.items:
             self.items.remove(item)
         else:
-            return "There is no such item here."
+            print("There is no such item here.")
 
-    def remove_person(self, person):
+    def add_person(self, person: str):
+        self.people.append(person)
+
+    def remove_person(self, person: str):
         if person in self.people:
             self.people.remove(person)
-            return f"{person.title()} is no longer here."
-        return "There is no such person here."
+        else:
+            print("There is no such person here.")
 
-    @property
-    def return_items(self):
-        return self.items
+    def add_structure(self, structure: str):
+        self.structures.append(structure)
 
-    @property
-    def return_people(self):
-        return self.people
-
-    @property
-    def return_directions(self):
-        return self.directions
-
-
-crossroads = Location("B4", "crossroads")
-
-# Test remove item
-
-# print(crossroads.return_items)
-# print(crossroads.remove_item("john"))
-# print(crossroads.return_items)
-#
-# # Test remove person
-#
-# print(crossroads.return_people)
-# print((crossroads.remove_person("John Doe")))
-# print(crossroads.return_people)
-
-# print(crossroads.show_items())
-# print(crossroads.show_people())
-# print(crossroads.remove_person("Jack Daniels"))
-# print(crossroads.show_people())
-# print(crossroads.remove_person("John Doe"))
-# print(crossroads.show_people())
-# print(crossroads.show_directions())
-
-# print(crossroads.return_items)
-# print(crossroads.return_people)
-# print(crossroads.return_directions)
+    def remove_structure(self, structure: str):
+        if structure in self.structures:
+            self.structures.remove(structure)

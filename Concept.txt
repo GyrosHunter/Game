@@ -1,0 +1,61 @@
+1. Location
+	- init
+
+		- self features
+		- self name
+		- self name reference
+		- self coordinates
+		- self available directions
+		- self items
+		- self people
+		- self structures
+		- self exit locations
+
+	- repr
+	- enter
+
+	- look around
+	- show directions
+	- show items
+	- show people
+	- show objects
+
+	- exit
+	    - exit location
+
+	- add/remove item
+	- add/remove person
+	- add/remove structure
+
+
+
+2. Person
+    - init
+        - first name
+        - last name
+        - age
+        - description
+        - occupation
+        - attitude
+        - items
+
+	- look at
+	- gain/lose health
+	- die
+	- add/remove item
+	- sell item
+
+
+3. Character(first name, last name, gender, age)
+    - init
+        - occupation
+        - bio
+        - items
+        - skills
+        - stats - attack, defense, intelligence
+
+    - look at
+	- gain/lose health
+	- die
+	- add/remove item
+	- sell item

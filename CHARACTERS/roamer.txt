@@ -1,0 +1,7 @@
+occupation,roamer
+bio,"Roamers are nothing short of scavengers. They take what they can get."
+description,"You're a tall, skinny, sketchy fellow with murder in your eyes and darkness in your heart."
+items,blade
+skills,evade
+stats,60 40 80
+

@@ -1,0 +1,9 @@
+first_name,John
+last_name,Wayne
+age,55
+description,"John Wayne is an old cowboy. He believes to be a Hollywood actor. He may sell you some stuff."
+occupation,cowboy
+attitude,friendly
+items,rope jacket leather_vest
+
+
