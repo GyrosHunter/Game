@@ -13,9 +13,7 @@
 
 	- repr
 	- enter
-
 	- look around
-	- show directions
 	- show items
 	- show people
 	- show objects
@@ -29,33 +27,57 @@
 
 
 
-2. Person
+2. Person(Parent Class)
     - init
         - first name
         - last name
+        - full name
+
+        - occupation
+        - health
         - age
         - description
-        - occupation
-        - attitude
-        - items
 
-	- look at
-	- gain/lose health
-	- die
-	- add/remove item
-	- sell item
-
-
-3. Character(first name, last name, gender, age)
-    - init
-        - occupation
-        - bio
-        - items
+        - stats
+            - attack
+            - defense
+            - intelligence
         - skills
-        - stats - attack, defense, intelligence
+        - items
 
-    - look at
+    - repr
+	- look at self
 	- gain/lose health
 	- die
+	- show stats
+    - show skills
+	- show items
 	- add/remove item
-	- sell item
+
+3. NPC
+
+    - sell item
+    - talk
+
+4. Player
+
+    - repr
+    - look at self
+    - gain/lose health
+    - show inventory
+    - add/remove item
+    - change stat
+
+5. Item
+
+    - name
+    - description
+    - stats
+        - attack
+        - defense
+        - intelligence
+        - health
+        - durability
+        - weight
+
+

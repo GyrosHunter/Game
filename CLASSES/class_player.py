@@ -1,73 +1,52 @@
-import csv
+from CLASSES.class_person import Person
 
 
-class Character:
+class Player(Person):
     max_health = 100
 
     def __init__(self, occupation: str, first_name: str, last_name: str, age: int):
-
-        self.features = {}
-        with open(f"./CHARACTERS/{occupation}.txt", 'r') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if row:
-                    key, feature = row
-                    self.features[key] = feature
+        super().__init__(occupation)
 
         self.first_name = first_name
         self.last_name = last_name
+        self.age = age
         self.full_name = ' '.join([self.first_name, self.last_name])
         self.bio = self.features["bio"]
-
         self.occupation = occupation
-        self.health = self.max_health
-        self.age = age
-
-        if self.features["items"]:
-            self.items = [item.replace('_', ' ') for item in self.features["items"].split(' ')]
-        else:
-            self.items = []
-
-        if self.features["skills"]:
-            self.skills = [skill.replace('_', ' ') for skill in self.features["skills"].split(' ')]
-        else:
-            self.skills = []
-
-        self.stats = [stat for stat in self.features["stats"].split(' ')]
-        self.attack = int(self.stats[0])
-        self.defense = int(self.stats[1])
-        self.intelligence = int(self.stats[2])
 
     def __repr__(self):
-        return f"Meet {self.full_name}, an average {self.occupation} motherfucker..."
+        return self.bio
 
-    def look_at(self):
-        print(f"{self.features['description']}")
+    def look_at_self(self):
+        print(self.description)
 
     def gain_health(self, value: int):
-        print(f"You have gained {value} health points")
+        print(f"You have gained {value} health points.")
         self.health += value
         if self.health > self.max_health:
             self.health = self.max_health
         print(f"You now have {self.health} health points.")
 
     def lose_health(self, value: int):
-        print (f"You have lost {value} health points")
+        print(f"You have lost {value} health points.")
         self.health -= value
         if self.health <= 0:
-            print(self.die())
+            self.die()
         else:
             print(f"You have lost {value} health points and now have {self.health} left.")
 
     def die(self):
         print(f"You dead, bro.")
 
-    def show_items(self):
+    def show_inventory(self):
         if self.items:
             items = ', '.join(self.items)
             print(f"Currently your inventory consists of the following items: {items}.")
         else:
             print(f"Your inventory is empty.")
+
+    def show_items(self):
+        self.show_inventory()
 
     def add_item(self, item: str):
         self.items.append(item)
@@ -81,3 +60,10 @@ class Character:
             print(f"{item.title()} has been removed from your inventory.")
         elif item not in self.items:
             print("You don't have it!")
+
+    def change_stat(self, stat, value: int):
+        self.stats[f'{stat}'] += value
+        effect = "gained"
+        if value < 0:
+            effect = "lost"
+        print(f"You have {effect} {value} {stat} points and now you have {self.stats[stat]}!")

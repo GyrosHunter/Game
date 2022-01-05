@@ -1,36 +1,48 @@
-import csv
+from CLASSES.class_ContentGenerator import ContentGenerator
 
 
 class Person:
     max_health = 100
+    base_stats = ("attack", "defense", "intelligence", "health")
+    _Generator = ContentGenerator()
 
-    def __init__(self, name):
+    def __init__(self, name: str):
 
-        self.features = {}
-        with open(f"./PEOPLE/{name}.txt", 'r') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if row:
-                    key, feature = row
-                    self.features[key] = feature
+        self.features = self._Generator.generate_from_txt(name)
 
         self.first_name = self.features["first_name"]
         self.last_name = self.features["last_name"]
         self.full_name = ' '.join([self.first_name, self.last_name])
 
+        self.occupation = self.features["occupation"]
         self.health = self.max_health
         self.age = int(self.features["age"])
+        self.description = self.features["description"]
+
+        if self.features["stats"]:
+            person_stats = [stat for stat in self.features["stats"].split(' ')]
+            person_stats.append(self.health)
+            self.stats = {self.base_stats[i]: int(person_stats[i]) for i in range(0, len(self.base_stats))}
+        else:
+            self.stats = dict.fromkeys(self.base_stats, "N/A")
+
+        if self.features["skills"]:
+            self.skills = [skill.replace('_', ' ') for skill in self.features["skills"].split(' ')]
+        else:
+            self.skills = []
 
         if self.features["items"]:
             self.items = [item.replace('_', ' ') for item in self.features["items"].split(' ')]
         else:
             self.items = []
 
+        # METHODS
+
     def __repr__(self):
         return f"Meet {self.full_name}."
 
-    def look_at(self):
-        print(f"{self.features['description']}")
+    def look_at_self(self):
+        print(self.description)
 
     def gain_health(self, value: int):
         if value < 10:
@@ -56,6 +68,20 @@ class Person:
     def die(self):
         print(f"{self.full_name} has died")
 
+    def show_stats(self):
+        print(f"Here are {self.full_name}'s stats:")
+        print(f"Attack:       {self.stats['attack']}")
+        print(f"Defense:      {self.stats['defense']}")
+        print(f"Intelligence: {self.stats['intelligence']}")
+        print(f"Health:       {self.stats['health']}")
+
+    def show_skills(self):
+        if self.items:
+            skills = ', '.join(self.skills)
+            print(f"{self.full_name} has mastered the following skills: {skills}.")
+        else:
+            print(f"{self.full_name} has no skills.")
+
     def show_items(self):
         if self.items:
             items = ', '.join(self.items)
@@ -69,10 +95,3 @@ class Person:
     def remove_item(self, item: str):
         if item in self.items:
             self.items.remove(item)
-
-    def sell_item(self, item: str):
-        if item in self.items:
-            self.remove_item(item)
-            print("Here you are, kind sir!")
-        else:
-            print(f"I have no such thing for sale!")
