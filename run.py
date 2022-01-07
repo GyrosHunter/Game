@@ -1,7 +1,7 @@
 from CLASSES.class_game import Game
 
 game = Game()
-game.first_run()
+game.start_game()
 
 run = True
 while run:

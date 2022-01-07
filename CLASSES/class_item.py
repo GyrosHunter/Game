@@ -25,3 +25,6 @@ class Item:
         print(f"Health:       {self.stats['health']}")
         print(f"Durability:   {self.stats['durability']}")
         print(f"Weight:       {self.stats['weight']}")
+
+    def show_self(self):
+        print(self.description)

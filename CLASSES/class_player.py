@@ -58,11 +58,14 @@ class Player(Person):
     def remove_item(self, item: str):
         if not self.items:
             print("Your inventory is empty.")
+            return False
         elif item in self.items:
             self.items.remove(item)
             print(f"{item.title()} has been removed from your inventory.")
+            return True
         elif item not in self.items:
             print("You don't have it!")
+            return False
 
     def change_stat(self, stat, value: int):
         self.stats[f'{stat}'] += value

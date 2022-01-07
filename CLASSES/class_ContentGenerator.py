@@ -33,10 +33,10 @@ class ContentGenerator:
         return locations, npcs, items
 
     def character_generator(self):
-        occupation = input("What is your trade? ")
-        first_name = input("What is your name? ")
-        last_name = input("Last name? ")
-        age = input("How old are you? ")
+        occupation = "nightrunner"      # input("What is your trade? ")
+        first_name = "John"             # input("What is your name? ")
+        last_name = "Wayne"             # input("Last name? ")
+        age = 38                        # input("How old are you? ")
         age = int(age)
         features = {}
         with open(f"TXT/CHARACTERS/{occupation}.txt", 'r') as file:
