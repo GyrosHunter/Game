@@ -2,12 +2,11 @@ from CLASSES.class_person import Person
 
 
 class NPC(Person):
-    def __init__(self, name):
-        super().__init__(name)
+    def __init__(self, features):
+        super().__init__(features)
 
+        self.features = features
         self.chat = self.features["talk"]
-
-    # METHODS
 
     def sell_item(self, item: str):
         if item in self.items:

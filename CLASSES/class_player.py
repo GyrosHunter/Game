@@ -4,8 +4,8 @@ from CLASSES.class_person import Person
 class Player(Person):
     max_health = 100
 
-    def __init__(self, occupation: str, first_name: str, last_name: str, age: int):
-        super().__init__(occupation)
+    def __init__(self, features, occupation: str, first_name: str, last_name: str, age: int):
+        super().__init__(features)
 
         self.first_name = first_name
         self.last_name = last_name
@@ -15,7 +15,10 @@ class Player(Person):
         self.occupation = occupation
 
     def __repr__(self):
-        return self.bio
+        return self.full_name
+
+    def my_story(self):
+        print(self.bio)
 
     def look_at_self(self):
         print(self.description)

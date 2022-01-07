@@ -1,15 +1,10 @@
-from CLASSES.class_ContentGenerator import ContentGenerator
-
-
 class Person:
     max_health = 100
     base_stats = ("attack", "defense", "intelligence", "health")
-    _Generator = ContentGenerator()
 
-    def __init__(self, name: str):
+    def __init__(self, features: dict):
 
-        self.features = self._Generator.generate_from_txt(name)
-
+        self.features = features
         self.first_name = self.features["first_name"]
         self.last_name = self.features["last_name"]
         self.full_name = ' '.join([self.first_name, self.last_name])
@@ -39,7 +34,7 @@ class Person:
         # METHODS
 
     def __repr__(self):
-        return f"Meet {self.full_name}."
+        return self.full_name
 
     def look_at_self(self):
         print(self.description)

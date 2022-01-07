@@ -1,15 +1,11 @@
-from CLASSES.class_ContentGenerator import ContentGenerator
-
-
 class Item:
-    _Generator = ContentGenerator()
     max_durability = 100
     base_stats = ("attack", "defense", "intelligence", "health", "durability", "weight")
 
-    def __init__(self, name):
+    def __init__(self, features: dict):
 
-        self.features = self._Generator.generate_from_txt(name)
-        self.name = name
+        self.features = features
+        self.name = self.features["name"]
         self.description = self.features['description']
 
         if self.features["stats"]:
@@ -19,7 +15,7 @@ class Item:
             self.stats = dict.fromkeys(self.base_stats, "N/A")
 
     def __repr__(self):
-        return self.description
+        return self.name
 
     def show_stats(self):
         print(f"Here are the stat modifiers of {self.name}:")
