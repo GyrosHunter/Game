@@ -1,0 +1,22 @@
+name,uptown
+coordinates,D101
+name_reference,in the uptown
+
+east,"The rich would rarely use the train. Rather have the taxi drive them straight to the airport."
+east_exit_location,railroad station
+
+west,"The western exit leads through a country road."
+west_exit_location,country road
+
+south,"That is where the well-off go to relax, the West Park".
+south_exit_location,west park
+
+north,"North of the city extends a massive highway leading deep into the country."
+north_exit_location,highway
+
+enter,"You've arrived in the uptown. Like fish in the water is not the way you feel in here."
+description,"Modern, intelligent houses, driveway hoops for kids, pools in the backyard. You saw one in the book once, but that's about it. If she had any connections here, she kept them way out of your sight."
+
+items,basketball
+people,
+venues,

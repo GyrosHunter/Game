@@ -2,7 +2,6 @@ from CLASSES.class_person import Person
 
 
 class Player(Person):
-    max_health = 100
 
     def __init__(self, features, occupation: str, first_name: str, last_name: str, age: int):
         super().__init__(features)
@@ -11,7 +10,7 @@ class Player(Person):
         self.last_name = last_name
         self.age = age
         self.full_name = ' '.join([self.first_name, self.last_name])
-        self.bio = self.features["bio"]
+        self.bio = features["bio"]
         self.occupation = occupation
 
     def __repr__(self):
@@ -53,7 +52,7 @@ class Player(Person):
 
     def add_item(self, item: str):
         self.items.append(item)
-        print(f"{item.title()} has been added to your inventory.")
+        print(f"{item.capitalize()} has been added to your inventory.")
 
     def remove_item(self, item: str):
         if not self.items:
@@ -61,7 +60,7 @@ class Player(Person):
             return False
         elif item in self.items:
             self.items.remove(item)
-            print(f"{item.title()} has been removed from your inventory.")
+            print(f"{item.capitalize()} has been removed from your inventory.")
             return True
         elif item not in self.items:
             print("You don't have it!")

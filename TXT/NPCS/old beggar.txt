@@ -1,0 +1,12 @@
+full name,Old Beggar
+occupation,beggar
+age,55
+description,"Old Beggar is an old beggar. He believes he's a Hollywood actor. He's got some stuff for sale."
+
+attack,0
+defense,0
+intelligence,0
+
+items,piece_of_rope broken_cell_phone
+skills,begging sleeping
+talk,"Back in the day I was a famous actor. I had ladies by the dozen. But then I trusted this skunk and all went to shit".

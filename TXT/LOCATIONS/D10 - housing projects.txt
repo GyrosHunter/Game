@@ -1,0 +1,22 @@
+name,housing projects
+coordinates,D108
+name_reference,in the housing projects
+
+east,"Lonely avenue, home..."
+east_exit_location,lonely avenue
+
+west,"Tall glass office buildings tower over the western city skyline."
+west_exit_location,business center
+
+south,"The south is where you'll never return. Not now, not ever."
+south_exit_location,
+
+north,"North from here lies the city center."
+north_exit_location,center square
+
+enter,"You find yourself in the housing projects."
+description,"This is the place where the crack is sold, where kids bear guns, where whores tuck their children in..."
+
+items,
+people,
+venues,

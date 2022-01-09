@@ -1,10 +1,14 @@
-first_name,None
-last_name,None
+full name,None
 age,0
 occupation,nightrunner
 bio,"Roamers are nothing short of scavengers. They take what they can get."
 description,"You're a tall, skinny, sketchy fucker with murder in your eyes and darkness in your heart."
+
+attack,60
+defense,40
+intelligence,80
+health,100
+
 items,blade sunglasses
 skills,evade
-stats,60 40 80
 

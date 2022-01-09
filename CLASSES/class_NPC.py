@@ -5,8 +5,7 @@ class NPC(Person):
     def __init__(self, features):
         super().__init__(features)
 
-        self.features = features
-        self.chat = self.features["talk"]
+        self.chat = features["talk"]
 
     def sell_item(self, item: str):
         if item in self.items:

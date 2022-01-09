@@ -1,52 +1,45 @@
+from OTHER.slow import print_slow
+
+
 class Location:
     all_directions = ("east", "west", "south", "north")
 
     def __init__(self, features: dict):
 
-        self.features = features
-        self.name = self.features["name"]
-        self.coordinates = self.features["coordinates"]
-        self.name_reference = self.features["name_reference"]
+        self.name = features["name"]
+        self.coordinates = features["coordinates"]
+        self.name_reference = features["name_reference"]
 
-        self.available_directions = []
-        for direction in self.all_directions:
-            if self.features[f"{direction}_exit_location"]:
-                self.available_directions.append(direction)
-
-        if self.features["items"]:
-            self.items = [item.replace('_', ' ') for item in self.features["items"].split(' ')]
-        else:
-            self.items = []
-
-        if self.features["people"]:
-            self.people = [person.replace('_', ' ') for person in self.features["people"].split(' ')]
-        else:
-            self.people = []
-
-        if self.features["structures"]:
-            self.structures = [structure.replace('_', ' ') for structure in self.features["structures"].split(' ')]
-        else:
-            self.structures = []
-
-        self.exit_locations = {}
-        for direction in self.available_directions:
-            self.exit_locations[direction] = self.features[f"{direction}_exit_location"].replace('_', ' ')
+        self.enter = features["enter"]
+        self.description = features["description"]
+        self.directions = features["directions"]
+        self.available_directions = features["available_directions"]
+        self.exit_locations = features["exit_locations"]
+        self.items = features["items"]
+        self.people = features["people"]
+        self.venues = features["venues"]
 
     def __repr__(self):
         return self.name
 
-    def enter(self):
-        print(f"{self.features['enter']}")
+    def enter_message(self):
+        print_slow(self.enter)
 
     def show_available_directions(self):
         directions = ', '.join(self.available_directions)
-        print(f"You can travel in the following directions: {directions}.")
+        print_slow(f"You can travel in the following directions: {directions}.")
 
     def get_available_directions(self):
         return self.available_directions
 
     def look_around(self):
-        print(f"{self.features['description']}")
+        print_slow(self.description)
+
+    def look_direction(self, direction: str):
+        if self.directions[direction]:
+            print(self.directions[direction])
+        else:
+            print("Nothing to see there...")
 
     def show_items(self):
         if self.items:
@@ -86,25 +79,23 @@ class Location:
         else:
             print("There is no such person here.")
 
-    def show_structures(self):
-        if self.structures:
-            structures = ', '.join(self.structures)
-            print(f"You see: {structures}.")
+    def show_venues(self):
+        if self.venues:
+            venues = ', '.join(self.venues)
+            print(f"venues in this location: {venues}.")
         else:
-            print("The is absolutely nothing here.")
+            print("Well, no venues here.")
 
-    def get_structures(self):
-        return self.structures
+    def get_venues(self):
+        return self.venues
 
-    def add_structure(self, structure: str):
-        self.structures.append(structure)
+    def add_venue(self, venue: str):
+        self.venues.append(venue)
 
-    def remove_structure(self, structure: str):
-        if structure in self.structures:
-            self.structures.remove(structure)
+    def remove_venues(self, venue: str):
+        if venue in self.venues:
+            self.venues.remove(venue)
 
     def exit(self, direction: str) -> str:
-        if self.features[f"{direction}_exit_location"]:
-            print(f"You are leaving {self.name} and now {self.features[direction]}")
-            return self.exit_locations[direction]
-        print(f"{self.features[direction]}")
+        print(f"You decided to go {direction}...")
+        return self.exit_locations[direction]

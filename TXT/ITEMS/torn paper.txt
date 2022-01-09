@@ -1,0 +1,4 @@
+name,torn paper
+description,"A piece of some old paper with nothing significant in it."
+
+use,"It reads that there has been some turmoil stirring up in the city about tax raises.\nApparently people are out in the streets. This does not look good."

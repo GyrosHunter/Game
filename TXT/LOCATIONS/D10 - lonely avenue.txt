@@ -1,0 +1,22 @@
+name,lonely avenue
+coordinates,D109
+name_reference,"in the Lonely Avenue"
+
+east,"Crossroads right outside the city scope."
+east_exit_location,crossroads
+
+west,"Towering apartment blocks populated by middle class and the unemployed fixtures of the lonely avenue streets and bars."
+west_exit_location,housing projects
+
+south,"The south is where you'll never return. Not now, not ever."
+south_exit_location,
+
+north,"Power plants, factories and sweaty workers will look for some sweet love in the lonely avenue..."
+north_exit_location,industrial district
+
+enter,"You entered the poorest and darkest part of the city. The lonely avenue..."
+description,"This is where you grew up. The sweat and dense smell of sweat brings memories from your childhood."
+
+items,
+people,bouncer
+venues,lone_bar

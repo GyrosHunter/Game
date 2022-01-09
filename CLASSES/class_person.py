@@ -1,37 +1,25 @@
 class Person:
     max_health = 100
-    base_stats = ("attack", "defense", "intelligence", "health")
 
     def __init__(self, features: dict):
 
-        self.features = features
-        self.first_name = self.features["first_name"]
-        self.last_name = self.features["last_name"]
-        self.full_name = ' '.join([self.first_name, self.last_name])
+        self.full_name = features["full name"]
 
-        self.occupation = self.features["occupation"]
+        self.occupation = features["occupation"]
         self.health = self.max_health
-        self.age = int(self.features["age"])
-        self.description = self.features["description"]
+        self.age = int(features["age"])
+        self.description = features["description"]
+        self.stats = features['stats']
 
-        if self.features["stats"]:
-            person_stats = [stat for stat in self.features["stats"].split(' ')]
-            person_stats.append(self.health)
-            self.stats = {self.base_stats[i]: int(person_stats[i]) for i in range(0, len(self.base_stats))}
-        else:
-            self.stats = dict.fromkeys(self.base_stats, "N/A")
-
-        if self.features["skills"]:
-            self.skills = [skill.replace('_', ' ') for skill in self.features["skills"].split(' ')]
+        if features["skills"]:
+            self.skills = [skill.replace('_', ' ') for skill in features["skills"].split(' ')]
         else:
             self.skills = []
 
-        if self.features["items"]:
-            self.items = [item.replace('_', ' ') for item in self.features["items"].split(' ')]
+        if features["items"]:
+            self.items = [item.replace('_', ' ') for item in features["items"].split(' ')]
         else:
             self.items = []
-
-        # METHODS
 
     def __repr__(self):
         return self.full_name

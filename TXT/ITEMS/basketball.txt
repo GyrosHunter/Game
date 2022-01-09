@@ -1,0 +1,3 @@
+name,basketball
+description,"A good-looking Spalding, full leather. Been a while since you played some hoops."
+use,

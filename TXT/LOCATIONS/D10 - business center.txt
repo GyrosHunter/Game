@@ -1,0 +1,22 @@
+name,business center
+coordinates,D107
+name_reference,in the business center
+
+east,"Sketchy corners and dark alleys winding among apartment blocks of housing projects."
+east_exit_location,housing projects
+
+west,"The western exit leads through a country road."
+west_exit_location,country road
+
+south,"The south is where you'll never return. Not now, not ever."
+south_exit_location,
+
+north,"A quiet, elegant park, frequented by the upper-class people from uptown."
+north_exit_location,west park
+
+enter,"You arrive in the business center."
+description,"The business center, home for lawyers, engineers and all the big fish. She may have had someone here to help her out. It's worth to ask around..."
+
+items,
+people,
+venues,lawyer's_office

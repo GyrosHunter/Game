@@ -1,0 +1,22 @@
+name,airport
+coordinates,D103
+name_reference,"at the airport"
+
+east,"Crossroads right outside the city scope."
+east_exit_location,crossroads
+
+west,"Westbound flow of commuters slowly crawl towards the railroad station."
+west_exit_location,railroad station
+
+south,"Power plants, factories and sweaty workers will look for some sweet love in the lonely avenue..."
+south_exit_location,industrial district
+
+north,"North of the city extends a massive highway leading deep into the country."
+north_exit_location,highway
+
+enter,"You arrive at the airport."
+description,"Massive communication hub connected with the railroad station. This is the busiest part of the city".
+
+items,
+people,
+venues,
