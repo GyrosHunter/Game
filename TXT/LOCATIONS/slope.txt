@@ -2,17 +2,17 @@ name,slope
 coordinates,E09
 name_reference,"on the slope"
 
-east,into the forest.
+east,Deep and dark forest.
 east_exit_location,forest
 
-west,heading towards the city wall.
-west_exit_location,city_wall
+west,"A large city, you're likely to find some clues there."
+west_exit_location,
 
-south,going down towards the crossroads.
+south,"Crossroads, where you started your search."
 south_exit_location,crossroads
 
-north,climbing for the hilltop.
-north_exit_location,hilltop
+north,You see an elevated plateau.
+north_exit_location,
 
 enter,"You are standing on the slope."
 description,"Just grass and heavy wind."

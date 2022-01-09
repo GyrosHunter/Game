@@ -2,20 +2,20 @@ name,crossroads
 coordinates,E10
 name_reference,"at the crossroads"
 
-east,going further down the road.
+east,Just a normal road.
 east_exit_location,road
 
-west,heading towards the city.
+west,It is definitely a city.
 west_exit_location,city
 
 south,"Too many painful memories there... You just can't go back."
 south_exit_location,
 
-north,climbing up the slope.
+north,"It's a steep slope alright. It seems to lead to an elevated plateau".
 north_exit_location,slope
 
 enter,"You have arrived at the crossroads. Nothing to see here. Three roads are leading east, west and north. As the wind is gently blowing, you notice an old paper lying at the side of the road..."
-description,"Nothing much to see here... It's just a normal crossroads. From here, you can travel west towards what appears to be a city. You can climb up the elevated plateau to the north or head down the road to the east. To the south there is a vast swath of land and a mirage of mountains covered in myst. That is where you came from. And you're not coming back."
+description,"Nothing much to see here... It's just a normal crossroads. You can travel west towards what appears to be a city. You can climb up the elevated plateau to the north or head down the road to the east. To the south there is a vast swath of land and a mirage of mountains covered in myst. That is where you came from. And you're not coming back."
 
 items,torn_paper
 people,Old_Beggar
