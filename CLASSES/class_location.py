@@ -5,7 +5,6 @@ class Location:
     all_directions = ("east", "west", "south", "north")
 
     def __init__(self, features: dict):
-
         self.name = features["name"]
         self.coordinates = features["coordinates"]
         self.name_reference = features["name_reference"]

@@ -1,3 +1,0 @@
-name,broken car
-description,"This is probably an old Honda, that has long not been used. The windows are shattered, body crushed, all the vital parts removed, even the engine. Can barely serve as a shelter."
-use,"It's completely useless, little chance to find anything in it."

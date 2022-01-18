@@ -9,7 +9,7 @@ class Person:
         self.health = self.max_health
         self.age = int(features["age"])
         self.description = features["description"]
-        self.stats = features['stats']
+        self.stats = features["stats"]
 
         if features["skills"]:
             self.skills = [skill.replace('_', ' ') for skill in features["skills"].split(' ')]
