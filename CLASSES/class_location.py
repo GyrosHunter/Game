@@ -1,4 +1,4 @@
-from OTHER.slow import print_slow
+from utils import print_slow
 
 
 class Location:
@@ -41,11 +41,8 @@ class Location:
             print("Nothing to see there...")
 
     def show_items(self):
-        if self.items:
-            items = ', '.join(self.items)
-            print(f"After a quick look-around you notice the following objects available in this location: {items}.")
-        else:
-            print("No items can be found here.")
+        items = ', '.join(self.items)
+        print(f"Items available {self.name_reference}: {items}.")
 
     def get_items(self):
         return self.items
@@ -81,7 +78,7 @@ class Location:
     def show_venues(self):
         if self.venues:
             venues = ', '.join(self.venues)
-            print(f"venues in this location: {venues}.")
+            print(f"Venues in this location: {venues}.")
         else:
             print("Well, no venues here.")
 

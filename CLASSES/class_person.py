@@ -4,22 +4,13 @@ class Person:
     def __init__(self, features: dict):
 
         self.full_name = features["full name"]
-
         self.occupation = features["occupation"]
         self.health = self.max_health
         self.age = int(features["age"])
         self.description = features["description"]
         self.stats = features["stats"]
-
-        if features["skills"]:
-            self.skills = [skill.replace('_', ' ') for skill in features["skills"].split(' ')]
-        else:
-            self.skills = []
-
-        if features["items"]:
-            self.items = [item.replace('_', ' ') for item in features["items"].split(' ')]
-        else:
-            self.items = []
+        self.items = features["items"]
+        self.skills = features["skills"]
 
     def __repr__(self):
         return self.full_name

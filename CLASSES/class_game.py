@@ -63,7 +63,7 @@ class Game:
             elif self.player_input in ("look around", "look a", "la"):
                 self.current_location.look_around()
 
-            elif self.player_command in ["look"[:i] for i in range(len("look"))]:
+            elif self.player_command in ["look"[:i] for i in range(len("look")+1)]:
                 self.look_at_direction()
 
             elif self.player_input in self.current_location.all_directions:
@@ -71,16 +71,16 @@ class Game:
 
             # PLAYER
 
-            elif self.player_input == "stats":
+            elif self.player_input in ["stats"[:i] for i in range(2, len("items") + 1)]:
                 return self.player.show_stats()
 
-            elif self.player_input == "skills":
+            elif self.player_input in ["skills"[:i] for i in range(2, len("items") + 1)]:
                 return self.player.show_skills()
 
             # ITEMS
 
             elif self.player_input in ["items"[:i] for i in range(1, len("items") + 1)]:
-                self.current_location.show_items()
+                self.show_items()
 
             elif self.player_input in self.current_location.items:
                 self.current_location.remove_item(self.player_input)
@@ -97,7 +97,7 @@ class Game:
 
             # VENUES
 
-            elif self.player_input in ("str", "venues", "show venues"):
+            elif self.player_input in ["venues"[:i] for i in range(1, len("venues") + 1)]:
                 self.current_location.show_venues()
 
             # PEOPLE
@@ -150,3 +150,9 @@ class Game:
             return self.venues[self.player_target].show_self()
         else:
             print("There is no such thing here!")
+
+    def show_items(self):
+        if self.current_location.items:
+            self.current_location.show_items()
+        else:
+            print("There are no items here!")

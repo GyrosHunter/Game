@@ -17,6 +17,6 @@ north_exit_location,forest
 enter,"You're walking down the road".
 description,"The road is just like any other road."
 
-items,
+items,trash
 people,
-venues,trash
+venues,

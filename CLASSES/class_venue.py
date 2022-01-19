@@ -14,3 +14,9 @@ class Venue:
 
     def use_self(self):
         print(self.use)
+
+    def enter_self(self):
+        print(f"You have entered the {self.name}")
+
+    def exit_self(self):
+        print(f"You've exited the {self.name}")

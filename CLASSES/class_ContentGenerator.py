@@ -62,10 +62,10 @@ class GeneratorTXT:
         self.location_features_generator(features)
 
     def character_generator(self):
-        occupation = "nightrunner"      # input("What is your trade? ")
-        first_name = "John"             # input("What is your name? ")
-        last_name = "Wayne"             # input("Last name? ")
-        age = 38                        # input("How old are you? ")
+        occupation = "nightrunner"  # input("What is your trade? ")
+        first_name = "John"  # input("What is your name? ")
+        last_name = "Wayne"  # input("Last name? ")
+        age = 38  # input("How old are you? ")
         age = int(age)
         features = {}
         with open(f"TXT/CHARACTERS/{occupation}.txt", 'r') as file:
@@ -76,8 +76,24 @@ class GeneratorTXT:
                     features[key] = feature
 
         self.person_stats_generator(features)
+        self.person_items_generator(features)
+        self.person_skills_generator(features)
         player = Player(features, occupation, first_name, last_name, age)
         return player
+
+    def person_items_generator(self, features: dict) -> dict:
+        if features["items"]:
+            features["items"] = [item.replace('_', ' ') for item in features["items"].split(' ')]
+        else:
+            features["items"] = []
+        return features
+
+    def person_skills_generator(self, features: dict) -> dict:
+        if features["skills"]:
+            features["skills"] = [skill.replace('_', ' ') for skill in features["skills"].split(' ')]
+        else:
+            features["skills"] = []
+        return features
 
     def person_stats_generator(self, features: dict) -> dict:
 
@@ -125,9 +141,7 @@ class GeneratorTXT:
 
     def location_features_generator(self, features: dict) -> dict:
 
-        # Generates items, people and venues of the location
-        things = ("items", "people", "venues")
-        for thing in things:
+        for thing in ("items", "people", "venues"):
             if thing in features:
                 features[thing] = [unit.replace('_', ' ') for unit in features[thing].split(' ')]
             else:
