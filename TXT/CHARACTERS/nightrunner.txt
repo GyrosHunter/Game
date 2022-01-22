@@ -1,4 +1,4 @@
-full name,None
+name,None
 age,0
 occupation,nightrunner
 bio,"Roamers are nothing short of scavengers. They take what they can get."

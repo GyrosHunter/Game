@@ -50,6 +50,7 @@ class GeneratorTXT:
                     self.item_stats_generator(features)
                     items[filename[:-4]] = Item(features)
                 elif f"{directory}" == "TXT/VENUES":
+                    self.generate_venues(features)
                     venues[filename[:-4]] = Venue(features)
 
         player = self.character_generator()
@@ -59,12 +60,14 @@ class GeneratorTXT:
         self.directions_generator(features)
         self.available_directions_generator(features)
         self.exit_locations_generator(features)
-        self.location_features_generator(features)
+        self.features_generator(features)
+
+    def generate_venues(self, features):
+        self.features_generator(features)
 
     def character_generator(self):
         occupation = "nightrunner"  # input("What is your trade? ")
-        first_name = "John"  # input("What is your name? ")
-        last_name = "Wayne"  # input("Last name? ")
+        name = "Jack"  # input("What is your name? ")
         age = 38  # input("How old are you? ")
         age = int(age)
         features = {}
@@ -78,7 +81,7 @@ class GeneratorTXT:
         self.person_stats_generator(features)
         self.person_items_generator(features)
         self.person_skills_generator(features)
-        player = Player(features, occupation, first_name, last_name, age)
+        player = Player(features, occupation, name, age)
         return player
 
     def person_items_generator(self, features: dict) -> dict:
@@ -139,10 +142,10 @@ class GeneratorTXT:
             features['exit_locations'][direction] = features[f"{direction}_exit_location"]
         return features
 
-    def location_features_generator(self, features: dict) -> dict:
+    def features_generator(self, features: dict) -> dict:
 
         for thing in ("items", "people", "venues"):
-            if thing in features:
+            if features[thing]:
                 features[thing] = [unit.replace('_', ' ') for unit in features[thing].split(' ')]
             else:
                 features[thing] = []

@@ -2,7 +2,7 @@ name,railroad station
 coordinates,D102
 name_reference,at the railroad station
 
-east,"Not the busiest airport in the world."
+east,"There's an airport, not much air-traffic, though. Little chance she used a plane."
 east_exit_location,airport
 
 west,"The high class residential area with respectable villas and recreation facilities for the rich."

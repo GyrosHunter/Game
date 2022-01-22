@@ -3,18 +3,16 @@ from CLASSES.class_person import Person
 
 class Player(Person):
 
-    def __init__(self, features, occupation: str, first_name: str, last_name: str, age: int):
+    def __init__(self, features, occupation: str, name: str, age: int):
         super().__init__(features)
 
-        self.first_name = first_name
-        self.last_name = last_name
+        self.name = name.title()
         self.age = age
-        self.full_name = ' '.join([self.first_name, self.last_name])
         self.bio = features["bio"]
         self.occupation = occupation
 
     def __repr__(self):
-        return self.full_name
+        return self.name
 
     def my_story(self):
         print(self.bio)

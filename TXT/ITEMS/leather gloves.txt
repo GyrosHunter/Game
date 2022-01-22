@@ -1,0 +1,11 @@
+name,leather gloves
+description,"Leather gloves, incidentally in the perfect size for you."
+
+attack,0
+defense,3
+intelligence,0
+health,0
+durability,100
+weight,300
+
+use,"Wear'em to use'em."

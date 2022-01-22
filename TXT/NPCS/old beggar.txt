@@ -1,4 +1,4 @@
-full name,Old Beggar
+name,Old Beggar
 occupation,beggar
 age,55
 description,"Old Beggar is an old beggar. He believes he's a Hollywood actor. He's got some stuff for sale."

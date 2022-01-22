@@ -2,8 +2,8 @@ name,center square
 coordinates,D105
 name_reference,in the center square
 
-east,"There's an airport, not much air-traffic, though. Little chance she used a plane."
-east_exit_location,airport
+east,"Power plants, factories and sweaty workers will look for some sweet love in the lonely avenue..."
+east_exit_location,industrial district
 
 west,"A quiet, elegant park, frequented by the upper-class people from uptown."
 west_exit_location,west park

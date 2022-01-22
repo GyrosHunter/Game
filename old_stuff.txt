@@ -1,7 +1,0 @@
-# self.features = {}
-        # with open(f"./TXT/{name}.txt", 'r') as file:
-        #     reader = csv.reader(file)
-        #     for row in reader:
-        #         if row:
-        #             key, feature = row
-        #             self.features[key] = feature

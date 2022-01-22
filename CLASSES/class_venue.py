@@ -1,22 +1,18 @@
-class Venue:
+from CLASSES.class_location import Location
+
+
+class Venue(Location):
 
     def __init__(self, features: dict):
+        super().__init__(features)
 
-        self.name = features["name"]
-        self.description = features["description"]
         self.use = features["use"]
 
-    def __repr__(self):
-        return self.name
-
-    def show_self(self):
-        print(self.description)
-
-    def use_self(self):
+    def use_venue(self):
         print(self.use)
 
-    def enter_self(self):
-        print(f"You have entered the {self.name}")
+    def enter_venue(self):
+        print(self.enter)
 
-    def exit_self(self):
-        print(f"You've exited the {self.name}")
+    def exit_venue(self):
+        print(f"You've exited the {self.name}.")
