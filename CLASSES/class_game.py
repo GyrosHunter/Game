@@ -15,6 +15,8 @@ class Game:
         self.items = None
         self.player = None
         self.venues = None
+        self.game_data = self.locations, self.npcs, self.items, self.venues, self.player, self.current_location,\
+            self.base_location
         self.game_run = None
         self.player_input = None
         self.player_command = None
@@ -27,17 +29,20 @@ class Game:
 
     def start_menu(self):
         print('')
-        print("Start New Game (press 1)")
-        print("Load Game      (press 2)")
-        print("Quit game      (press 3)")
+        print("Start New Game           (press 1)")
+        print("Continue Previous Game   (press 2)")
+        print("Load Game                (press 3)")
+        print("Quit game                (press q)")
         print('')
         self.game_run = input("What is your choice: ")
-        if self.game_run == "1":
+        if self.game_run in ("1", "new"):
             self.new_game()
-        elif self.game_run == "2":
+        elif self.game_run in ("2", "continue"):
+            self.continue_previous_game()
+        elif self.game_run in ("3", "load"):
             self.load_game()
-        elif self.game_run == "3":
-            self.quit_game()
+        elif self.game_run in ("q", "quit", "exit"):
+            self.exit_game()
         else:
             print("Choose one of the given options!")
             self.start_menu()
@@ -48,10 +53,24 @@ class Game:
             source='TEXT')
         self.current_location = self.locations["crossroads"]
         print('')
-        print("INTRO TEXT")
+        print("The search of the missing whore begins...")
         print('')
         self.current_location.enter_message()
         self.run_game()
+
+    def auto_save(self):
+        self.save_file("auto_save")
+        print("Autosave complete.")
+
+    def continue_previous_game(self):
+        if os.path.isfile(f"SAVE/auto_save.pickle"):
+            self.load_file("auto_save")
+            print(f"{self.player.name}, your game has been loaded!")
+            self.current_location.enter_message()
+            self.run_game()
+        else:
+            print("There is no game to continue!\nStart a new one!")
+            return self.start_menu()
 
     def save_game(self):
         save_name = input("Name your save file: ").lower()
@@ -60,44 +79,55 @@ class Game:
             while decision not in ("y", "n"):
                 decision = input("Save already exists. Do you want to overwrite this file(y/n)? ")
             if decision == "y":
-                with open(f"SAVE/{save_name}.pickle", "wb") as file:
-                    save_game = (self.player, self.locations, self.items, self.npcs, self.venues, self.current_location)
-                    pickle.dump(save_game, file)
-                    print(f"Your game has been saved.")
+                self.save_file(save_name)
+                print(f"Your game has been saved.")
             else:
                 self.save_game()
         else:
-            with open(f"SAVE/{save_name}.pickle", "wb") as file:
-                save_game = (self.player, self.locations, self.items, self.npcs, self.venues, self.current_location)
-                pickle.dump(save_game, file)
-                print(f"Your game has been saved at {save_name}.pickle.")
+            self.save_file(save_name)
+            print(f"Your game has been saved at {save_name}.pickle.")
 
     def load_game(self):
         if len(os.listdir("SAVE")) == 0:
             print("The are no saved games!")
-            return self.start_menu()
+            if self.current_location:
+                pass
+            else:
+                return self.start_menu()
+
         print("Here is the list of saved games:\n")
         for i, filename in enumerate(os.listdir("SAVE")):
             print(f"{i + 1}. {filename[:-7]}")
         print("")
+
         load_name = input("Which game would you like to load: ").lower()
         if os.path.isfile(f"SAVE/{load_name}.pickle") is False:
             print("File does not exist exist!")
+            return self.start_menu()
         else:
-            with open(f"SAVE/{load_name}.pickle", "rb") as file:
-                save_game = pickle.load(file)
-                self.player, self.locations, self.items, self.npcs, self.venues, self.current_location = save_game
-
-            print(f"{self.player.name}, your game has been loaded!\n")
+            self.load_file(load_name)
+            print(f"{self.player.name}, your game has been loaded!")
             self.current_location.enter_message()
             self.run_game()
+
+    def save_file(self, filename: str):
+        with open(f"SAVE/{filename}.pickle", "wb") as file:
+            saved_game = self.locations, self.npcs, self.items, self.venues, self.player, self.current_location,\
+                self.base_location
+            pickle.dump(saved_game, file)
+
+    def load_file(self, filename: str):
+        with open(f"SAVE/{filename}.pickle", "rb") as file:
+            loaded_game = pickle.load(file)
+            self.locations, self.npcs, self.items, self.venues, self.player, self.current_location,\
+                self.base_location = loaded_game
 
     def run_game(self):
         while self.game_run:
             self.get_player_input()
 
             if self.player_input in ("q", "quit"):
-                self.quit_game()
+                self.quit_to_start_menu()
 
             elif self.player_input == "save":
                 self.save_game()
@@ -162,10 +192,21 @@ class Game:
     def get_player_input(self):
         print('')
         self.player_input = input(f"<What would you like to do now?> ").lower()
+        print('')
         words = [word for word in self.player_input.split(' ')]
         self.player_command, self.player_target = words[0], ' '.join(words[i] for i in range(1, len(words)))
 
-    def quit_game(self):
+    def quit_to_start_menu(self):
+        decision = input("Are you sure you want to quit the game(y/n): ")
+        if decision in ("y", "q"):
+            self.auto_save()
+            return self.start_menu()
+        elif decision == "n":
+            pass
+        else:
+            return self.quit_to_start_menu()
+
+    def exit_game(self):
         print('')
         print('Thanks for playing. See you next time!')
         print('')

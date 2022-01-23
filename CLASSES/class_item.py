@@ -11,7 +11,7 @@ class Item:
         return self.name
 
     def show_stats(self):
-        print(f"Here are the stats of {self.name}:")
+        print(f"Here are the stats of {self.name}:\n")
         print(f"Attack:       {self.stats['attack']}")
         print(f"Defense:      {self.stats['defense']}")
         print(f"Intelligence: {self.stats['intelligence']}")
