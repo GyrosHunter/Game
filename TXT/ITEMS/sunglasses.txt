@@ -1,0 +1,4 @@
+name,sunglasses
+description,"It's far from sunny, but you do look good in them."
+
+use,"Waiting for some shiny days to come."

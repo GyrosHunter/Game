@@ -1,0 +1,22 @@
+name,road
+coordinates,F10
+name_reference,"on the road"
+
+east,"Road leads to an abandoned factory."
+east_exit_location,
+
+west,"Crossroads, where you started your search."
+west_exit_location,crossroads
+
+south,"Too many painful memories there... You just can't go back."
+south_exit_location,
+
+north,Deep and dark forest.
+north_exit_location,forest
+
+enter,"You're walking down the road".
+description,"The road is just like any other road."
+
+items,trash
+people,
+venues,

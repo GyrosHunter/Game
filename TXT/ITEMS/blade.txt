@@ -1,0 +1,11 @@
+name,blade
+description,"A low class knife, barely sufficient for self-defense against children and old ladies."
+
+attack,10
+defense,0
+intelligence,0
+health,0
+durability,100
+weight,500
+
+use,"Relax, when the fight breaks out, you'll use it."

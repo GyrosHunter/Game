@@ -1,0 +1,22 @@
+name,country road
+coordinates,10C
+name_reference,on the country road
+
+east,"To the east lies the city, you can enter it through the West Park."
+east_exit_location,west park
+
+west,"Nothing there yet."
+west_exit_location,
+
+south,"The south is where you'll never return. Not now, not ever."
+south_exit_location,
+
+north,"Nothing there yet."
+north_exit_location,
+
+enter,"You've entered the country road."
+description,"Peaceful, quiet, good old country road running from the city to the farm situated in the far west."
+
+items,
+people,
+venues,cow_herd

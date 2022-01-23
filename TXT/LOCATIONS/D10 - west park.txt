@@ -1,0 +1,22 @@
+name,west park
+coordinates,D104
+name_reference,in the West Park
+
+east,"The eastern alley leads to the center square."
+east_exit_location,center square
+
+west,"The western exit leads through a country road."
+west_exit_location,country road
+
+south,"The south is where you'll never return. Not now, not ever."
+south_exit_location,
+
+north,"In the north-west part of city lies the uptown."
+north_exit_location,uptown
+
+enter,"You've entered the West Park."
+description,"Perfect place to calm your nerves down. Nothing sooths your mind better than the sight of ponds, tress and yards filled with children playing with their pets and toys. Joy everywhere..."
+
+items,
+people,
+venues,

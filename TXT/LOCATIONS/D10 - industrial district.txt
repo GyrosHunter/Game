@@ -1,0 +1,22 @@
+name,industrial district
+coordinates,D106
+name_reference,"in the industrial district"
+
+east,"Crossroads right outside the city scope."
+east_exit_location,crossroads
+
+west,"The center square, hustle and bustle like in every city."
+west_exit_location,center square
+
+south,"Lonely avenue, home..."
+south_exit_location,lonely avenue
+
+north,"There's an airport, not much air-traffic, though. Little chance she used a plane."
+north_exit_location,airport
+
+enter,"At the east part of the city, you find yourself in the industrial district."
+description,"Busy area filled with the sound of rumbling factory machines and roaring of trucks carrying merchandise from the airport to the city center."
+
+items,
+people,
+venues,

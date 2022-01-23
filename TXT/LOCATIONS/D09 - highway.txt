@@ -1,0 +1,22 @@
+name,highway
+coordinates,D09
+name_reference,on the highway
+
+east,"Steep slope leading up to the plateau."
+east_exit_location,slope
+
+west,"Nothing there yet."
+west_exit_location,
+
+south,"The highway leads south to city."
+south_exit_location,railway station
+
+north,"Nothing there yet."
+north_exit_location,
+
+enter,"You have entered the highway, not a good place for a pedestrian."
+description,"Pretty large highway connecting the city with the north of the country. Would you drive north if you were a whore on the run?"
+
+items,
+people,
+venues,

@@ -1,0 +1,22 @@
+name,railroad station
+coordinates,D102
+name_reference,at the railroad station
+
+east,"There's an airport, not much air-traffic, though. Little chance she used a plane."
+east_exit_location,airport
+
+west,"The high class residential area with respectable villas and recreation facilities for the rich."
+west_exit_location,uptown
+
+south,center square
+south_exit_location,"Southbound streets lead to the city center."
+
+north,"North of the city extends a massive highway leading deep into the country."
+north_exit_location,highway
+
+enter,"You entered the railroad station. If she is out of town, this is where you start asking about her."
+description,"Couple of platforms and a swarm of passengers changing from factory buses and incoming planes."
+
+items,
+people,
+venues,

@@ -1,0 +1,13 @@
+name,broken car
+coordinates,E10
+name_reference,"in the broken car"
+
+enter,"Good job. You're sitting in an old wreck of a car. No missing whores in here."
+
+description,"This is probably an old Honda, that has long not been used. The windows are shattered, body crushed, all the vital parts removed, even the engine. Can barely serve as a shelter."
+
+use,"It's completely useless, little chance to find anything in it."
+
+items,leather_gloves
+people,
+venues,

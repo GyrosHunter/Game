@@ -1,0 +1,22 @@
+name,center square
+coordinates,D105
+name_reference,in the center square
+
+east,"Power plants, factories and sweaty workers will look for some sweet love in the lonely avenue..."
+east_exit_location,industrial district
+
+west,"A quiet, elegant park, frequented by the upper-class people from uptown."
+west_exit_location,west park
+
+south,"Sketchy corners and dark alleys winding among apartment blocks of housing projects."
+south_exit_location,housing projects
+
+north,"North of the city extends a massive highway leading deep into the country."
+north_exit_location,railroad station
+
+enter,"You've reached the heart of the city. Busy center square with malls, shops, venues and people."
+description,"Noisy and busy place, many people to ask around. Somebody must know something".
+
+items,
+people,
+venues,

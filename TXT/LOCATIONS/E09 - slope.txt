@@ -1,0 +1,22 @@
+name,slope
+coordinates,E09
+name_reference,"on the slope"
+
+east,Deep and dark forest.
+east_exit_location,forest
+
+west,"A large city, you're likely to find some clues there."
+west_exit_location,
+
+south,"Crossroads, where you started your search."
+south_exit_location,crossroads
+
+north,You see an elevated plateau.
+north_exit_location,
+
+enter,"You are standing on the slope."
+description,"Just grass and heavy wind."
+
+items,trash
+people,
+venues,
