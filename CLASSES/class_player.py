@@ -15,7 +15,7 @@ class Player(Person):
         return self.name
 
     def my_story(self):
-        print(self.bio)
+        return self.bio
 
     def look_at_self(self):
         print(self.description)

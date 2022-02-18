@@ -1,5 +1,3 @@
-from utils import print_slow
-
 
 class Location:
 
@@ -26,17 +24,17 @@ class Location:
         return self.name
 
     def enter_message(self):
-        print_slow(self.enter)
+        return self.enter
 
     def show_available_directions(self):
         directions = ', '.join(self.available_directions)
-        print_slow(f"You can travel in the following directions: {directions}.")
+        return f"You can travel in the following directions: {directions}."
 
     def look_around(self):
-        print_slow(self.description)
+        return self.description
 
     def look_direction(self, direction: str):
-        print(self.directions[direction])
+        return self.directions[direction]
 
     def show_items(self):
         items = ', '.join(self.items)
@@ -49,7 +47,7 @@ class Location:
         if item in self.items:
             self.items.remove(item)
         else:
-            print("There is no such item here.")
+            return "There is no such item here."
 
     def show_people(self):
         people = ', '.join(self.people)
@@ -76,5 +74,4 @@ class Location:
             self.venues.remove(venue)
 
     def exit(self, direction: str) -> str:
-        print(f"You decided to go {direction}...")
         return self.exit_locations[direction]

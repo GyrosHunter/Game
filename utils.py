@@ -7,3 +7,4 @@ def print_slow(string):
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(0)
+

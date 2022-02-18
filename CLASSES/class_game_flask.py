@@ -20,39 +20,14 @@ class Game:
         self.player_command = None
         self.player_target = None
 
-    def game_intro(self):
-        print('')
-        print("Welcome to the Game!")
-        self.start_menu()
-
-    def start_menu(self):
-        print('')
-        print("Start New Game           (press 1)")
-        print("Continue Previous Game   (press 2)")
-        print("Load Game                (press 3)")
-        print("Quit game                (press q)")
-        print('')
-        self.game_run = input("What is your choice: ")
-        if self.game_run in ("1", "new", "Start New Game"):
+    def start_menu(self, command):
+        if command == "Start New Game":
             self.new_game()
-        elif self.game_run in ("2", "continue", "Continue Previous Game"):
+        elif command == "Continue Previous Game":
             self.continue_previous_game()
-        elif self.game_run in ("3", "load", "Load Game"):
+        elif command == "Load Game":
             self.load_game()
-        elif self.game_run in ("q", "quit", "exit", "Quit Game"):
-            self.exit_game()
-        else:
-            print("Choose one of the given options!")
-            self.start_menu()
-
-    def start_menu_flask(self, command):
-        if command in ("1", "new", "Start New Game"):
-            self.new_game()
-        elif command in ("2", "continue", "Continue Previous Game"):
-            self.continue_previous_game()
-        elif command in ("3", "load", "Load Game"):
-            self.load_game()
-        elif command in ("q", "quit", "exit", "Quit Game"):
+        elif command == "Quit Game":
             self.exit_game()
 
     def new_game(self):
@@ -60,11 +35,7 @@ class Game:
         self.locations, self.npcs, self.items, self.venues, self.player = generator.class_generator_new(
             source='TEXT')
         self.current_location = self.locations["crossroads"]
-        print('')
-        print("The search of the missing whore begins here...")
-        print('')
         self.current_location.enter_message()
-        self.run_game()
 
     def auto_save(self):
         self.save_file("auto_save")
@@ -75,7 +46,6 @@ class Game:
             self.load_file("auto_save")
             print(f"{self.player.name}, your game has been loaded!")
             self.current_location.enter_message()
-            self.run_game()
         else:
             print("There is no game to continue!\nYou should start a new one!")
             return self.start_menu()
@@ -130,78 +100,76 @@ class Game:
             self.locations, self.npcs, self.items, self.venues, self.player, self.current_location,\
                 self.base_location = loaded_game
 
-    def run_game(self):
-        while self.game_run:
-            self.auto_save()
-            self.get_player_input()
+    def run_game(self, command):
+        self.auto_save()
+        self.get_player_input(command)
 
-            if self.player_input in ("q", "quit"):
-                self.quit_to_start_menu()
+        if self.player_input in ("q", "quit"):
+            self.quit_to_start_menu()
 
-            elif self.player_input == "save":
-                self.save_game()
+        elif self.player_input == "save":
+            self.save_game()
 
-            elif self.player_input == "load":
-                self.load_game()
+        elif self.player_input == "load":
+            self.load_game()
 
-            elif self.player_command == "info":
-                self.info()
+        elif self.player_command == "info":
+            self.info()
 
-            elif self.player_command in ["look"[:i] for i in range(len("look") + 1)]:
-                self.look_at()
+        elif self.player_command in ["look"[:i] for i in range(len("look") + 1)]:
+            self.look_at()
 
-            elif self.player_command in self.all_directions:
-                self.exit_location()
+        elif self.player_command in self.all_directions:
+            return self.exit_location()
+            # return f"You decided to go {self.player_command}."
 
-            # PLAYER
+        # PLAYER
 
-            elif self.player_command in ["stats"[:i] for i in range(2, len("items") + 1)]:
-                return self.player.show_stats()
+        elif self.player_command in ["stats"[:i] for i in range(2, len("items") + 1)]:
+            return self.player.show_stats()
 
-            elif self.player_command in ["skills"[:i] for i in range(2, len("items") + 1)]:
-                return self.player.show_skills()
+        elif self.player_command in ["skills"[:i] for i in range(2, len("items") + 1)]:
+            return self.player.show_skills()
 
-            # ITEMS
+        # ITEMS
 
-            elif self.player_command in ["items"[:i] for i in range(1, len("items") + 1)]:
-                self.show_items()
+        elif self.player_command in ["items"[:i] for i in range(1, len("items") + 1)]:
+            self.show_items()
 
-            elif self.player_input in self.current_location.items:
-                self.current_location.remove_item(self.player_input)
-                self.player.add_item(self.player_input)
+        elif self.player_input in self.current_location.items:
+            self.current_location.remove_item(self.player_input)
+            self.player.add_item(self.player_input)
 
-            elif self.player_command in ["discard"[:i] for i in range(len("discard") + 1)]:
-                self.discard_item()
+        elif self.player_command in ["discard"[:i] for i in range(len("discard") + 1)]:
+            self.discard_item()
 
-            elif self.player_command in ["inventory"[:i] for i in range(len("inventory") + 1)]:
-                self.player.show_inventory()
+        elif self.player_command in ["inventory"[:i] for i in range(len("inventory") + 1)]:
+            self.player.show_inventory()
 
-            elif self.player_command in ["show"[:i] for i in range(len("show") + 1)]:
-                self.show_stats()
+        elif self.player_command in ["show"[:i] for i in range(len("show") + 1)]:
+            self.show_stats()
 
-            # VENUES
+        # VENUES
 
-            elif self.player_command in ["venues"[:i] for i in range(1, len("venues") + 1)]:
-                self.show_venues()
+        elif self.player_command in ["venues"[:i] for i in range(1, len("venues") + 1)]:
+            self.show_venues()
 
-            elif self.player_input in self.current_location.venues:
-                self.enter_venue()
+        elif self.player_input in self.current_location.venues:
+            self.enter_venue()
 
-            elif self.player_command == "exit":
-                self.exit_venue()
+        elif self.player_command == "exit":
+            self.exit_venue()
 
-            # PEOPLE
+        # PEOPLE
 
-            elif self.player_command in ["people"[:i] for i in range(len("people") + 1)]:
-                self.show_people()
+        elif self.player_command in ["people"[:i] for i in range(len("people") + 1)]:
+            self.show_people()
 
-            else:
-                print("Come again?")
+        else:
+            print("Come again?")
 
-    def get_player_input(self):
-        print('')
-        self.player_input = input(f"<What would you like to do now?> ").lower()
-        print('')
+    def get_player_input(self, command):
+        self.player_input = command.lower()
         words = [word for word in self.player_input.split(' ')]
         self.player_command, self.player_target = words[0], ' '.join(words[i] for i in range(1, len(words)))
 
@@ -235,16 +203,16 @@ class Game:
     def exit_location(self):
         if self.current_location.available_directions:
             if self.player_command in self.current_location.available_directions:
-                self.change_current_location(self.player_command)
+                return self.change_current_location(self.player_command)
             else:
-                print(self.current_location.directions[self.player_command])
+                return self.current_location.directions[self.player_command]
         else:
-            print(self.base_location.directions[self.player_command])
+            return self.base_location.directions[self.player_command]
 
     def change_current_location(self, direction: str):
         new_location = self.current_location.exit(direction)
         self.current_location = self.locations[new_location]
-        return self.current_location.enter_message()
+        return f"You decided to go {direction}."
 
     def discard_item(self):
         if self.player_target not in self.player.items:

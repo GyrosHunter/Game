@@ -1,7 +1,7 @@
 name,None
 age,0
 occupation,nightrunner
-bio,"Roamers are nothing short of scavengers. They take what they can get."
+bio,"Nightrunners are nothing short of scavengers. They take what they can get..."
 description,"You're a tall, skinny, sketchy fucker with murder in your eyes and darkness in your heart."
 
 attack,60
