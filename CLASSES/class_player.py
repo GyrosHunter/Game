@@ -38,31 +38,31 @@ class Player(Person):
     def die(self):
         print(f"You dead, bro.")
 
-    def show_inventory(self):
-        if self.items:
-            items = ', '.join(self.items)
-            print(f"Currently your inventory consists of the following items: {items}.")
-        else:
-            print(f"Your inventory is empty.")
-
-    def show_items(self):
-        self.show_inventory()
+    def show_stats(self):
+        return f"Here are your stats, {self.name}:\
+                Attack:       {self.stats['attack']}\
+                Defense:      {self.stats['defense']}\
+                Intelligence: {self.stats['intelligence']}\
+                Health:       {self.stats['health']}"
 
     def add_item(self, item: str):
         self.items.append(item)
-        print(f"{item.capitalize()} has been added to your inventory.")
+        return f"{item.capitalize()} has been added to your inventory."
 
     def remove_item(self, item: str):
         if not self.items:
-            print("Your inventory is empty.")
-            return False
+            return "Your inventory is empty."
         elif item in self.items:
             self.items.remove(item)
-            print(f"{item.capitalize()} has been removed from your inventory.")
-            return True
+            return f"{item.capitalize()} has been removed from your inventory."
         elif item not in self.items:
-            print("You don't have it!")
-            return False
+            return f"You don't have a {item}!"
+
+    def show_inventory(self):
+        if self.items:
+            return "Your inventory:"
+        else:
+            return "Your inventory is empty."
 
     def change_stat(self, stat, value: int):
         self.stats[f'{stat}'] += value

@@ -1,0 +1,14 @@
+name,None
+age,0
+occupation,priest
+bio,"Well, let's put it this way: praying isn't the only thing you can make a whore do."
+description,"You're a small chubby little guy with a face of a guy who lost his lifetime at a poker game."
+
+attack,20
+defense,50
+intelligence,70
+health,100
+
+items,rosary cigarettes
+skills,persuade
+

@@ -37,8 +37,10 @@ class Location:
         return self.directions[direction]
 
     def show_items(self):
-        items = ', '.join(self.items)
-        print(f"Items available {self.name_reference}: {items}.")
+        if self.items:
+            return f"Items {self.name_reference}:"
+        else:
+            return f"No items available {self.name_reference}"
 
     def add_item(self, item: str):
         self.items.append(item)
@@ -50,8 +52,10 @@ class Location:
             return "There is no such item here."
 
     def show_people(self):
-        people = ', '.join(self.people)
-        print(f"The following people are present {self.name_reference}: {people}.")
+        if self.people:
+            return f"People {self.name_reference}:"
+        else:
+            return "There is no one here!"
 
     def add_person(self, person: str):
         self.people.append(person)
@@ -63,8 +67,10 @@ class Location:
             print("There is no such person here.")
 
     def show_venues(self):
-        venues = ', '.join(self.venues)
-        print(f"Venues available in this location: {venues}.")
+        if self.venues:
+            return f"Venues {self.name_reference}:"
+        else:
+            return "There are no venues here."
 
     def add_venue(self, venue: str):
         self.venues.append(venue)

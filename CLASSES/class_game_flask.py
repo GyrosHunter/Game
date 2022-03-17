@@ -8,6 +8,7 @@ class Game:
     all_directions = ("east", "west", "south", "north")
 
     def __init__(self):
+        self.saved_games = None
         self.current_location = None
         self.base_location = None
         self.locations = None
@@ -19,16 +20,6 @@ class Game:
         self.player_input = None
         self.player_command = None
         self.player_target = None
-
-    def start_menu(self, command):
-        if command == "Start New Game":
-            self.new_game()
-        elif command == "Continue Previous Game":
-            self.continue_previous_game()
-        elif command == "Load Game":
-            self.load_game()
-        elif command == "Quit Game":
-            self.exit_game()
 
     def new_game(self):
         generator = ContentGenerator()
@@ -44,84 +35,42 @@ class Game:
     def continue_previous_game(self):
         if os.path.isfile(f"SAVE/auto_save.pickle"):
             self.load_file("auto_save")
-            print(f"{self.player.name}, your game has been loaded!")
-            self.current_location.enter_message()
+            return f"{self.player.name}, your game has been loaded!"
         else:
-            print("There is no game to continue!\nYou should start a new one!")
-            return self.start_menu()
+            return "There is no game to continue!"
 
-    def save_game(self):
-        save_name = input("Name your save file: ").lower()
-        if os.path.isfile(f"SAVE/{save_name}.pickle"):
-            decision = None
-            while decision not in ("y", "n"):
-                decision = input("Save already exists. Do you want to overwrite this file(y/n)? ")
-            if decision == "y":
-                self.save_file(save_name)
-                print(f"Your game has been saved.")
-            else:
-                self.save_game()
-        else:
-            self.save_file(save_name)
-            print(f"Your game has been saved at {save_name}.pickle.")
-
-    def load_game(self):
-        if len(os.listdir("SAVE")) == 0:
-            print("The are no saved games!")
-            if self.current_location:
-                pass
-            else:
-                return self.start_menu()
-
-        print("Here is the list of saved games:\n")
-        for i, filename in enumerate(os.listdir("SAVE")):
-            print(f"{i + 1}. {filename[:-7]}")
-        print("")
-
-        load_name = input("Which game would you like to load: ").lower()
-        if os.path.isfile(f"SAVE/{load_name}.pickle") is False:
-            print("File does not exist exist!")
-            return self.start_menu()
-        else:
-            self.load_file(load_name)
-            print(f"{self.player.name}, your game has been loaded!")
-            self.current_location.enter_message()
-            self.run_game()
+    def show_saves(self):
+        self.saved_games = [filename[:-7] for filename in os.listdir("SAVE")]
+        return self.saved_games
 
     def save_file(self, filename: str):
         with open(f"SAVE/{filename}.pickle", "wb") as file:
-            saved_game = self.locations, self.npcs, self.items, self.venues, self.player, self.current_location,\
-                self.base_location
+            saved_game = self.locations, self.npcs, self.items, self.venues, self.player, self.current_location, \
+                         self.base_location
             pickle.dump(saved_game, file)
+            return f"{filename.title()} saved successfully."
 
     def load_file(self, filename: str):
+
+        if filename == "auto_save" and os.path.isfile(f"SAVE/auto_save.pickle") is False:
+            return "There no game to continue!"
+
         with open(f"SAVE/{filename}.pickle", "rb") as file:
             loaded_game = pickle.load(file)
-            self.locations, self.npcs, self.items, self.venues, self.player, self.current_location,\
+            self.locations, self.npcs, self.items, self.venues, self.player, self.current_location, \
                 self.base_location = loaded_game
+            return f"{filename.title()} loaded successfully."
 
     def run_game(self, command):
+
         self.auto_save()
         self.get_player_input(command)
 
-        if self.player_input in ("q", "quit"):
-            self.quit_to_start_menu()
-
-        elif self.player_input == "save":
-            self.save_game()
-
-        elif self.player_input == "load":
-            self.load_game()
-
-        elif self.player_command == "info":
-            self.info()
-
-        elif self.player_command in ["look"[:i] for i in range(len("look") + 1)]:
-            self.look_at()
+        if self.player_command in ["look"[:i] for i in range(len("look") + 1)]:
+            return self.look_at()
 
         elif self.player_command in self.all_directions:
             return self.exit_location()
-            # return f"You decided to go {self.player_command}."
 
         # PLAYER
 
@@ -133,26 +82,17 @@ class Game:
 
         # ITEMS
 
-        elif self.player_command in ["items"[:i] for i in range(1, len("items") + 1)]:
-            self.show_items()
-
         elif self.player_input in self.current_location.items:
             self.current_location.remove_item(self.player_input)
-            self.player.add_item(self.player_input)
+            return self.player.add_item(self.player_input)
 
         elif self.player_command in ["discard"[:i] for i in range(len("discard") + 1)]:
-            self.discard_item()
-
-        elif self.player_command in ["inventory"[:i] for i in range(len("inventory") + 1)]:
-            self.player.show_inventory()
-
-        elif self.player_command in ["show"[:i] for i in range(len("show") + 1)]:
-            self.show_stats()
+            return self.discard_item()
 
         # VENUES
 
         elif self.player_command in ["venues"[:i] for i in range(1, len("venues") + 1)]:
-            self.show_venues()
+            return self.current_location.show_venues()
 
         elif self.player_input in self.current_location.venues:
             self.enter_venue()
@@ -163,34 +103,18 @@ class Game:
         # PEOPLE
 
         elif self.player_command in ["people"[:i] for i in range(len("people") + 1)]:
-            self.show_people()
+            return self.current_location.show_people()
 
         else:
-            print("Come again?")
+            return "Come again?"
 
     def get_player_input(self, command):
         self.player_input = command.lower()
         words = [word for word in self.player_input.split(' ')]
         self.player_command, self.player_target = words[0], ' '.join(words[i] for i in range(1, len(words)))
 
-    def quit_to_start_menu(self):
-        decision = input("Are you sure you want to quit the game(y/n): ")
-        if decision in ("y", "q"):
-            self.auto_save()
-            return self.start_menu()
-        elif decision == "n":
-            pass
-        else:
-            return self.quit_to_start_menu()
-
     def exit_game(self):
         self.game_run = False
-        print('')
-        print('Thanks for playing. See you next time!')
-        print('')
-
-    def info(self):
-        print(f"You are {self.current_location.name_reference}.")
 
     def look_at(self):
         if self.player_target in self.all_directions:
@@ -198,7 +122,7 @@ class Game:
         elif self.player_target in ["around"[:i] for i in range(len("around") + 1)]:
             return self.current_location.look_around()
         else:
-            print("Where would you like to look?")
+            return "Where would you like to look?"
 
     def exit_location(self):
         if self.current_location.available_directions:
@@ -217,34 +141,8 @@ class Game:
     def discard_item(self):
         if self.player_target not in self.player.items:
             return self.player.remove_item(self.player_target)
-        self.player.remove_item(self.player_target)
         self.current_location.add_item(self.player_target)
-
-    def show_stats(self):
-        if self.player_target in self.player.items or self.player_target in self.current_location.items:
-            return self.items[self.player_target].show_self(), self.items[self.player_target].show_stats()
-        elif self.player_target in self.current_location.venues:
-            return self.venues[self.player_target].show_self()
-        else:
-            print("There is no such thing here!")
-
-    def show_items(self):
-        if self.current_location.items:
-            self.current_location.show_items()
-        else:
-            print("There are no items here!")
-
-    def show_people(self):
-        if self.current_location.people:
-            self.current_location.show_people()
-        else:
-            print("There is no one here!")
-
-    def show_venues(self):
-        if self.current_location.venues:
-            self.current_location.show_venues()
-        else:
-            print("Sorry, nothing interesting here.")
+        return self.player.remove_item(self.player_target)
 
     def enter_venue(self):
         if self.player_input in self.current_location.venues:

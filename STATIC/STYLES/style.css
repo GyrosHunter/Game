@@ -1,1 +1,195 @@
-body {color:#000000; background-color:#556B2F;}
+:root {
+  --descriptionWidth: 550px;
+  --hovercolor: hsl(0, 0%, 20%);
+}
+
+body {
+  color: #000000;
+  background-color: hsl(80, 50%, 30%);
+  text-decoration: none;
+}
+.head {
+  border-bottom: solid;
+  border-width: 5px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+.head > p {
+  font-style: italic;
+  font-size: 45%;
+  font-weight: normal;
+}
+.flash-message {
+  position: absolute;
+  float: left;
+}
+.quick-menu-container {
+  position: absolute;
+  float: left;
+  top: 200px;
+  left: 100%;
+  transform: translateX(-115%);
+}
+
+.main-menu {
+  font-size: 100;
+  position: relative;
+  left: 50%;
+  top: 25px;
+  transform: translateX(-50%);
+  text-align: center;
+}
+input[class="menu"] {
+  background-color: hsl(0, 0%, 60%);
+  font-size: 22px;
+  font-style: italic;
+}
+input[class="menu"]:hover {
+  font-weight: bold;
+  background-color: var(--hovercolor);
+}
+input[class="saves"] {
+  background-color: hsl(0, 0%, 60%);
+  font-size: 1.5rem;
+}
+input[class="saves"]:hover {
+  font-weight: bold;
+  background-color: var(--hovercolor);
+}
+input[class="quick-menu"] {
+  background-color: hsl(0, 0%, 60%);
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+}
+input[class="quick-menu"]:hover {
+  background-color: hsl(0, 100%, 20%);
+}
+.game,
+.player {
+  position: relative;
+  left: 50%;
+  top: 50px;
+  width: var(--descriptionWidth);
+  transform: translateX(-50%);
+  color: hsl(0, 0%, 0%);
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+}
+.game_flash {
+  font-weight: bold;
+}
+.location {
+  position: relative;
+  left: 50%;
+  top: 25px;
+  width: var(--descriptionWidth);
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+}
+.location-head {
+  font-weight: bold;
+  font-size: 25px;
+}
+.flex-container-location {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 50px;
+}
+.items {
+  transform: translateX(-75px);
+}
+.venues {
+  transform: translateX(75px);
+}
+.story {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  color: hsl(0, 0%, 0%);
+  font-size: 20px;
+  font-style: italic;
+}
+a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 1.2rem;
+}
+a:hover {
+  text-decoration: none;
+  font-style: italic;
+  color: black;
+  font-weight: bold;
+}
+.flex-container-player {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 50px;
+}
+.profile-photo {
+  height: 300px;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+}
+.inventory {
+  transform: translateX(-100px);
+}
+.player-stats {
+  transform: translateX(100px);
+}
+.goodbye,
+.bar {
+  text-align: center;
+}
+.goodbye > img {
+  height: 700px;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+}
+.bar > img {
+  width: 500px;
+  border-color: black;
+  border-width: 3px;
+  border-radius: 15px;
+  border-style: solid;
+}
+.whorepedia {
+  text-align: center;
+}
+.whorepedia > h3 {
+  text-decoration: underline;
+}
+.save-header {
+  position: relative;
+  text-align: center;
+  width: 500px;
+  left: 50%;
+  transform: translate(-50%);
+  top: 20px;
+}
+ol {
+  font-weight: normal;
+  font-size: 24px;
+  text-align: left;
+}
+.new-save {
+  position: relative;
+  width: 400px;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-235px);
+  font-size: 1.5rem;
+}

@@ -1,0 +1,2 @@
+name,cigarettes
+description,"A pack of smokes. Never know when these can come in handy."

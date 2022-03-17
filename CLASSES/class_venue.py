@@ -8,11 +8,14 @@ class Venue(Location):
 
         self.use = features["use"]
 
+    def show_self(self):
+        return self.description
+
     def use_venue(self):
-        print(self.use)
+        return self.use
 
     def enter_venue(self):
-        print(self.enter)
+        return self.enter
 
     def exit_venue(self):
-        print(f"You've exited the {self.name}.")
+        return f"You've exited the {self.name}."

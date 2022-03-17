@@ -147,41 +147,25 @@ class Game:
             elif self.player_command == "info":
                 self.info()
 
-            elif self.player_command in ["look"[:i] for i in range(len("look") + 1)]:
+            elif self.player_command in ["look", "l"]:
                 self.look_at()
 
             elif self.player_command in self.all_directions:
                 self.exit_location()
 
-            # PLAYER
-
-            elif self.player_command in ["stats"[:i] for i in range(2, len("items") + 1)]:
-                return self.player.show_stats()
-
-            elif self.player_command in ["skills"[:i] for i in range(2, len("items") + 1)]:
-                return self.player.show_skills()
-
-            # ITEMS
-
-            elif self.player_command in ["items"[:i] for i in range(1, len("items") + 1)]:
-                self.show_items()
-
             elif self.player_input in self.current_location.items:
                 self.current_location.remove_item(self.player_input)
-                self.player.add_item(self.player_input)
+                return self.player.add_item(self.player_input)
 
-            elif self.player_command in ["discard"[:i] for i in range(len("discard") + 1)]:
+            elif self.player_command in ["discard", "d"]:
                 self.discard_item()
 
-            elif self.player_command in ["inventory"[:i] for i in range(len("inventory") + 1)]:
-                self.player.show_inventory()
-
-            elif self.player_command in ["show"[:i] for i in range(len("show") + 1)]:
+            elif self.player_command in ["show"]:
                 self.show_stats()
 
             # VENUES
 
-            elif self.player_command in ["venues"[:i] for i in range(1, len("venues") + 1)]:
+            elif self.player_command in ["venues"]:
                 self.show_venues()
 
             elif self.player_input in self.current_location.venues:
@@ -192,7 +176,7 @@ class Game:
 
             # PEOPLE
 
-            elif self.player_command in ["people"[:i] for i in range(len("people") + 1)]:
+            elif self.player_command in ["people"]:
                 self.show_people()
 
             else:

@@ -15,8 +15,8 @@ class Person:
     def __repr__(self):
         return self.name
 
-    def look_at_self(self):
-        print(self.description)
+    def show_self(self):
+        return self.description
 
     def gain_health(self, value: int):
         if value < 10:
@@ -43,11 +43,11 @@ class Person:
         print(f"{self.name} has died")
 
     def show_stats(self):
-        print(f"Here are {self.name}'s stats:")
-        print(f"Attack:       {self.stats['attack']}")
-        print(f"Defense:      {self.stats['defense']}")
-        print(f"Intelligence: {self.stats['intelligence']}")
-        print(f"Health:       {self.stats['health']}")
+        return f"Here are {self.name}'s stats:\
+                Attack:       {self.stats['attack']}\
+                Defense:      {self.stats['defense']}\
+                Intelligence: {self.stats['intelligence']}\
+                Health:       {self.stats['health']}"
 
     def show_skills(self):
         if self.items:

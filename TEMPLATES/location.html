@@ -1,6 +1,51 @@
 {% extends "base.html" %}
 {% block title %} Whore Missing... {% endblock %}
-{% block content %}
-<h4>You are {{name}}.</h4>
+{%block content %}
+
+<form class="quick-menu-container" method="post">
+  <h6><input class="quick-menu" type="submit" name="command" value="Save Game" /></h6>
+  <h6><input class="quick-menu" type="submit" name="command" value="Load Game" /></h6>
+</form>
+
+<div class="location">
+  <p class="location-head">You are {{name}}.</p>
+  <p>{{description}}</p>
+</div>
+
+<div class="flex-container-location">
+<div class="items">
+  <h4>{{items_msg}}<br /></h4>
+  {% if items %}
+    <ul>
+      {% for item in items %}
+      <li><a href="/{{item}}">{{item}}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+<div class="people">
+  <h4>{{people_msg}}<br /></h4>
+  {% if people %}
+    <ul>
+      {% for person in people %}
+      <li><a href="/{{person}}">{{person}}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+<div class="venues">
+  <h4>{{venues_msg}}<br /></h4>
+  {% if venues %}
+    <ul>
+      {% for venue in venues %}
+      <li><a href="/{{venue}}">{{venue}}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+</div>
 
 {% endblock %}

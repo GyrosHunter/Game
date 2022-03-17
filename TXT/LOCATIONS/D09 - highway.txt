@@ -9,7 +9,7 @@ west,"Nothing there yet."
 west_exit_location,
 
 south,"The highway leads south to city."
-south_exit_location,railway station
+south_exit_location,railroad station
 
 north,"Nothing there yet."
 north_exit_location,

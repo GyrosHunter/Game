@@ -20,7 +20,7 @@ class Item:
         print(f"Weight:       {self.stats['weight']}")
 
     def show_self(self):
-        print(self.description)
+        return self.description
 
     def destroy_self(self):
         print(f"{self.name} has been destroyed.")

@@ -66,7 +66,7 @@ class GeneratorTXT:
         self.features_generator(features)
 
     def character_generator(self):
-        occupation = "nightrunner"  # input("What is your trade? ")
+        occupation = "priest"  # input("What is your trade? ")
         name = "Jack"  # input("What is your name? ")
         age = 38  # input("How old are you? ")
         age = int(age)

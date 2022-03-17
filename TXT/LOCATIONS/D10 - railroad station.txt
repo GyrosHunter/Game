@@ -8,8 +8,8 @@ east_exit_location,airport
 west,"The high class residential area with respectable villas and recreation facilities for the rich."
 west_exit_location,uptown
 
-south,center square
-south_exit_location,"Southbound streets lead to the city center."
+south,"Southbound streets lead to the city center."
+south_exit_location,center square
 
 north,"North of the city extends a massive highway leading deep into the country."
 north_exit_location,highway
